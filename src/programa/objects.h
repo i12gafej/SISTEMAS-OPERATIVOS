@@ -130,16 +130,23 @@ bool imprimirPerfilNuevo(string cor, string w[]);
 
 //FUNCIONES DE LA CLASE COORDINADOR DE CURSO
 class Ccurso : public Usuario{
+	private:
+	list<Curso> listas_;
 	public:
-	Ccurso(string, string);
-	int modificarCurso(list<Curso> listas);
-	void paginaCcurso(int vez, list<Curso> listas);
+	Ccurso(string, string, list<Curso>);
+	//setter
+	inline void set_listas(list<Curso> listas){listas_ = listas;};
+	//getters
+	inline list<Curso> get_listas(){return listas_;};
+	int modificarCurso();
+	void paginaCcurso(int vez);
+	bool crearCurso(Curso c1);
+	bool editarCurso();
+	bool eliminarCurso(int curso);
 };
 	void opcionMod();
 	vector<string> atributos();
-	bool crearCurso(Curso c1, list<Curso> listas);
-	bool editarCurso(list<Curso> listas);
-	bool eliminarCurso(list<Curso> listas, int curso);
+	
 	size_t comprobarExistencia(string c);//devuelve la posicion de la linea donde se encuentra el elemento existente y -1 si no existe
 	string estudiosRequeridos();
 	string fecha(int mod);

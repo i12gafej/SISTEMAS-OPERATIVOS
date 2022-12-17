@@ -19,7 +19,7 @@ Usuario::Usuario(string correo, string contra){
 	contra_ = contra;
 }
 //constructor coordinador de curso
-Ccurso::Ccurso(string correo, string contra):Usuario(correo, contra){}
+Ccurso::Ccurso(string correo, string contra, list<Curso> listas):Usuario(correo, contra){}
 //constructor participante
 Participante::Participante(string correo,
 		string contra,
@@ -1332,10 +1332,11 @@ bool opcionaMatricula(){
 	return false;
 }
 //FUNCIONES COORDINADOR DE CURSOS
-int Ccurso::modificarCurso(list<Curso> listas){
+int Ccurso::modificarCurso(){
 	int m, n, curso;
 	while(1){
-		verListas(listas);
+		list<Curso> l = get_listas();
+		verListas(l);
 		vector<string> atribs;
 		Curso cur = Curso("", "", "", "", "", "", "", "", "", "");
 		opcionMod();
@@ -1363,36 +1364,40 @@ int Ccurso::modificarCurso(list<Curso> listas){
 			cout<<cur.get_inicio()<<endl;
 			cout<<cur.get_fin()<<endl;
 			cout<<cur.get_participantes()<<endl;
-			if(crearCurso(cur, listas) == true){
-				imprimirListas(listas);
+			
+			if(crearCurso(cur) == true){
+				l = get_listas();
+				imprimirListas(get_listas());
 				return 1;
 			}
 			else{
 				cout<<"Curso no creado"<<endl;
-				paginaCcurso(1, listas);
+				paginaCcurso(1);
 			}
 			break;
 		case 2:{
-			if(editarCurso(listas) == true){
-				imprimirListas(listas);
+			if(editarCurso() == true){
+				l = get_listas();
+				imprimirListas(get_listas());
 				return 2;
 			}
 			else{
 				cout<<"Curso no editado"<<endl;
-				paginaCcurso(1, listas);
+				paginaCcurso(1);
 			}
 		}
 		break;
 		case 3:
 			cout<<"Introduce el curso que quieres modificar: ";
 			cin>>curso;
-			if(eliminarCurso(listas, curso) == true){
-				imprimirListas(listas);
+			if(eliminarCurso(curso) == true){
+				l = get_listas();
+				imprimirListas(get_listas());
 				return 3;
 			}
 			else{
 				cout<<"Curso no elimminado"<<endl;
-				paginaCcurso(1, listas);
+				paginaCcurso(1);
 			}
 			break;
 		case 4:
@@ -1405,12 +1410,13 @@ int Ccurso::modificarCurso(list<Curso> listas){
 	}
 	return 0;
 }
-void Ccurso::paginaCcurso(int vez, list<Curso> listas){
+void Ccurso::paginaCcurso(int vez){
 	int c, ope;
 	if(vez == 1){
 		cout<<"HOLA COORDINADOR DE CURSO"<<endl;
 		cout<<"_-----------------------------------_"<<endl;
 	}
+	verListas(get_listas());
 	cout<<endl;
 	cout<<endl;
 	cout<<endl;
@@ -1425,7 +1431,8 @@ void Ccurso::paginaCcurso(int vez, list<Curso> listas){
 	cout<<endl;
 	switch(c){
 	case 1:
-			ope = modificarCurso(listas);
+			
+			ope = modificarCurso();
 			if(ope == 1 || ope == 2 || ope == 3){
 				if(ope == 1){
 					cout<<"Creacion con exito"<<endl;
@@ -1437,7 +1444,7 @@ void Ccurso::paginaCcurso(int vez, list<Curso> listas){
 					cout<<"Eliminacion con exito"<<endl;
 				}
 			}
-		paginaCcurso(1, listas);
+		paginaCcurso(1);
 		break;
 	case 2:
 		cout<<"Hasta la proxima"<<endl;
@@ -1699,7 +1706,7 @@ vector<string> atributos(){
     }
 	return c;
 }
-bool crearCurso(Curso c1, list<Curso> listas){
+bool Ccurso::crearCurso(Curso c1){
 	/*string linea;
 	vector<string> lineas;
 	ifstream re;
@@ -1736,10 +1743,13 @@ bool crearCurso(Curso c1, list<Curso> listas){
 			wr<<curso[b]<<endl;
 	}
 	wr.close();*/
-	listas.push_back(c1);
+	list<Curso> l = get_listas();
+	l.push_back(c1);
+	set_listas(l);
 	return true;
 }
-bool editarCurso(list<Curso> listas){
+bool Ccurso::editarCurso(){
+	list<Curso> listas = get_listas();
 	list<Curso>::iterator it;
 	size_t nc = listas.size();
 	int curso, c = 1, ncur = static_cast<int>(nc);
@@ -2154,6 +2164,7 @@ bool editarCurso(list<Curso> listas){
 		cout<<"Ese curso no existe"<<endl;
 		return false;
 	}
+	set_listas(listas);
 	return true;	
 	//ahora vamos a imprimir en la pagina
 	/*c = 1;
@@ -2195,7 +2206,8 @@ bool editarCurso(list<Curso> listas){
 	
 }
 
-bool eliminarCurso(list<Curso> listas, int curso){
+bool Ccurso::eliminarCurso(int curso){
+	list<Curso> listas = get_listas();
 	list<Curso>::iterator it;
 	size_t nc = listas.size();
 	int c = 1, ncur = static_cast<int>(nc)/*, x, cont=0*/;
@@ -2227,6 +2239,7 @@ bool eliminarCurso(list<Curso> listas, int curso){
 		for(it = listas.begin(); it != listas.end(); it++){
 			if(curso == c){
 				listas.erase(it);
+				set_listas(listas);
 				return true;
 			}
 			c++;

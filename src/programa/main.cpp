@@ -50,21 +50,20 @@ int main(){
 	string correo, contra;
 	Usuario uno = Usuario("","");
 	Participante tres = Participante("","","","","","","","");
-	Ccurso cuatro = Ccurso("","");
 	list<Curso> listas = listaCursos();
+	Ccurso cuatro = Ccurso("","", listas);
 	user = uno.verPagina(0, listas);
 	if(user == 1){
-		correo = uno.get_correo();
-		contra = uno.get_contra();
-		tres = Participante(correo, contra,"","","","","","");
+		tres = Participante(uno.get_correo(), uno.get_contra(), "","","","","","");
 		tres.globalset(correo);
 		tres.paginaParticipante(0, listas);
 	}
 	if(user == 2){
-		correo = cuatro.get_correo();
-		contra = cuatro.get_contra();
-		cuatro = Ccurso(correo, contra);
-		cuatro.paginaCcurso(0, listas);
+		
+		cuatro = Ccurso(uno.get_correo(), uno.get_contra(), listas);
+		cuatro.set_listas(listas);
+		//ver por que ahi hay error(no muestra listas)
+		cuatro.paginaCcurso(0);
 	}
 	/*if(imprimirListas(listas) == true){
 		cout<<"ACTUALIDACION BBDD"<<endl;
