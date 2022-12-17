@@ -1,0 +1,40 @@
+00001
+CURSO DE ALBANHILERIA
+Mario casas, Maria maduenio y Dolores Casal.
+Mario Casas: casasmario33@uco.es Maria Maduenio: mariamadu333@uco.es Dolores Casal: dolore4@uco.es
+Va sobre constuir casas y eso
+Grado en Ingeniería Informática
+25
+04/01/2023
+12/04/2023
+11
+00022
+CURSO DE Pesca
+Mario casas, Maria maduenio y Dolores Casal.
+Mario Casas: casasmario33@uco.es Maria Maduenio: mariamadu333@uco.es Dolores Casal: dolore4@uco.es
+Va sobre constuir casas y eso
+Grado en Ingeniería Informática
+25
+04/01/2023
+12/04/2023
+25
+00345
+CURSO DE PILOTO
+Mario casas, Maria maduenio y Dolores Casal.
+Mario Casas: casasmario33@uco.es Maria Maduenio: mariamadu333@uco.es Dolores Casal: dolore4@uco.es
+Va sobre constuir casas y eso
+Grado en Ingeniería Informática
+25
+04/01/2023
+12/04/2023
+14
+BLOQUE35
+CURSO DEL RONEO
+BAD GYAL, LA ZOWI y ALBANY
+BAD GYAL: barnaesmia@uco.es, LA ZOWI: lazowipt@uco.es y ALBANY: albanyshorty@uco.es,
+es un curso para las mujeres empoderadas, para que se puedan empoderar mas
+// Grado en Ingeniería Informática
+100
+31/01/2023
+30/03/2023
+1
